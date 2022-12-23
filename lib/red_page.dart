@@ -48,6 +48,13 @@ class RedPage extends StatelessWidget {
                     }
                   },
                   child: const Text("Can pop kullanimi")),
+              ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/orangePage');
+                  },
+                  child: const Text("go to orange")),
             ],
           )),
     );
