@@ -2,29 +2,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation_udeny/main.dart';
+import 'package:navigation_udeny/ogrenci_listesi.dart';
 import 'package:navigation_udeny/orange_page.dart';
 import 'package:navigation_udeny/yellow_page.dart';
 
 class RouteGenerator {
-  static Route<dynamic>? _routeOlustur(Widget gidilecekWidget) {
+  static Route<dynamic>? _routeOlustur(
+      Widget gidilecekWidget, RouteSettings settings) {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
-      return CupertinoPageRoute(builder: (context) => gidilecekWidget);
+      return CupertinoPageRoute(
+          settings: settings, builder: (context) => gidilecekWidget);
     } else if (defaultTargetPlatform == TargetPlatform.android) {
-      return MaterialPageRoute(builder: (context) => gidilecekWidget);
+      return MaterialPageRoute(
+          settings: settings, builder: (context) => gidilecekWidget);
     } else {
-      return CupertinoPageRoute(builder: (context) => gidilecekWidget);
+      return CupertinoPageRoute(
+          settings: settings, builder: (context) => gidilecekWidget);
     }
   }
 
   static Route<dynamic>? routeGenerator(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return _routeOlustur(const HomePage());
-
+        return _routeOlustur(const HomePage(), settings);
       case '/orangePage':
-        return _routeOlustur(const OrangePage());
+        return _routeOlustur(const OrangePage(), settings);
       case '/yellowPage':
-        return _routeOlustur(const YellowPage());
+        return _routeOlustur(const YellowPage(), settings);
+      case '/ogrenciListesi':
+        return _routeOlustur(const Ogrencilistesi(), settings);
 
       default:
         return MaterialPageRoute(

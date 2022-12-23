@@ -100,6 +100,13 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/yellowPage');
                 },
                 child: const Text("yellow page")),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed("/ogrenciListesi", arguments: 60);
+                },
+                child: const Text("Liste olustur")),
           ],
         ),
       ),
