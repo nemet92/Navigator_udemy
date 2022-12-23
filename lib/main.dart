@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation_udeny/green_page.dart';
-import 'package:navigation_udeny/orange_page.dart';
 import 'package:navigation_udeny/red_page.dart';
+import 'package:navigation_udeny/route_generator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,20 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => const HomePage(),
-        'redPage': ((context) => RedPage()),
-        '/orangePage': (context) => const OrangePage()
-      },
-      //bu hisse olmayan sehife olduqda kecid edilecek
-      onUnknownRoute: ((settings) => MaterialPageRoute(
-          builder: ((context) => Scaffold(
-                appBar: AppBar(
-                  title: const Text("Error"),
-                ),
-                body: const Center(child: Text("Error 404")),
-              )))),
+    return const MaterialApp(
+      // routes: {
+      //   '/': (context) => const HomePage(),
+      //   'redPage': ((context) => RedPage()),
+      //   '/orangePage': (context) => const OrangePage()
+      // },
+      // //bu hisse olmayan sehife olduqda kecid edilecek
+      // onUnknownRoute: ((settings) => MaterialPageRoute(
+      //     builder: ((context) => Scaffold(
+      //           appBar: AppBar(
+      //             title: const Text("Error"),
+      //           ),
+      //           body: const Center(child: Text("Error 404")),
+      //         )))),
+      onGenerateRoute: RouteGenerator.routeGenerator,
       debugShowCheckedModeBanner: false,
       title: 'Navigator lesson',
       // home: const HomePage()
@@ -93,6 +94,12 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, 'redPage');
                 },
                 child: const Text("PushNamed kullanimi")),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/yellowPage');
+                },
+                child: const Text("yellow page")),
           ],
         ),
       ),
