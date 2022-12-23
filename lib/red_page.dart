@@ -37,7 +37,17 @@ class RedPage extends StatelessWidget {
                     print(_rastgeliSayi);
                     Navigator.of(context).pop(_rastgeliSayi);
                   },
-                  child: const Text("geri don"))
+                  child: const Text("geri don")),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  onPressed: () {
+                    if (Navigator.of(context).canPop()) {
+                      print("evet pop olabilir");
+                    } else {
+                      print("hayir ola bilmez");
+                    }
+                  },
+                  child: const Text("Can pop kullanimi")),
             ],
           )),
     );
