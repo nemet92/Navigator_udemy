@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Ogrencilistesi extends StatelessWidget {
+class Ogrencilistesi extends StatefulWidget {
   const Ogrencilistesi({super.key});
 
+  @override
+  State<Ogrencilistesi> createState() => _OgrencilistesiState();
+}
+
+class _OgrencilistesiState extends State<Ogrencilistesi> {
   @override
   Widget build(BuildContext context) {
     int elemanSayisi = ModalRoute.of(context)!.settings.arguments as int;
@@ -16,10 +21,21 @@ class Ogrencilistesi extends StatelessWidget {
           itemCount: elemanSayisi,
           itemBuilder: (context, index) {
             return ListTile(
+              onTap: (() {
+                var secilen = tumOgrenciler[index];
+                Navigator.pushNamed(context, "/ogrenciDetay",
+                    arguments: secilen);
+              }),
               leading: CircleAvatar(
-                child: Text(tumOgrenciler[index].isim),
+                radius: 24,
+                child: Center(
+                  child: Text(
+                    tumOgrenciler[index].isim,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
               ),
-              subtitle: Text(tumOgrenciler[index].Soyisim),
+              title: Text(tumOgrenciler[index].soyisim),
             );
           }),
     );
@@ -29,7 +45,7 @@ class Ogrencilistesi extends StatelessWidget {
 class Ogrenci {
   final int id;
   final String isim;
-  final String Soyisim;
+  final String soyisim;
 
-  Ogrenci(this.id, this.isim, this.Soyisim);
+  Ogrenci(this.id, this.isim, this.soyisim);
 }

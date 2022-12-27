@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation_udeny/main.dart';
+import 'package:navigation_udeny/ogrenci_detay.dart';
 import 'package:navigation_udeny/ogrenci_listesi.dart';
 import 'package:navigation_udeny/orange_page.dart';
 import 'package:navigation_udeny/yellow_page.dart';
@@ -31,6 +32,13 @@ class RouteGenerator {
         return _routeOlustur(const YellowPage(), settings);
       case '/ogrenciListesi':
         return _routeOlustur(const Ogrencilistesi(), settings);
+      case "/ogrenciDetay":
+        var parametredekiOgrenci = settings.arguments as Ogrenci;
+        return _routeOlustur(
+            OgrenciDetay(
+              secilenOgrencisi: parametredekiOgrenci,
+            ),
+            settings);
 
       default:
         return MaterialPageRoute(
@@ -41,6 +49,5 @@ class RouteGenerator {
                   body: const Center(child: Text("Error 404")),
                 ));
     }
-    return null;
   }
 }
